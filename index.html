@@ -10,8 +10,8 @@
         e.preventDefault();
         fetch("http://localhost:4200/session/csrf.json").then(response => {
           if (response.ok) {
-            response.json().then(csrf => {
-              document.getElementById("authenticity_token").value = csrf;
+            response.json().then(data => {
+              document.getElementById("authenticity_token").value = data.csrf;
               document.getElementsByTagName("form")[0].submit();
             });
           }
