@@ -8,7 +8,14 @@
     <script>
       function login(e) {
         e.preventDefault();
-        fetch("http://localhost:4200/session/csrf.json").then(response => {
+        fetch("http://localhost:4200/session/csrf.json", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          credentials: "include"
+        }).then(response => {
           if (response.ok) {
             response.json().then(data => {
               document.getElementById("authenticity_token").value = data.csrf;
